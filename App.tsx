@@ -1,118 +1,101 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// import React from "react";
+// import { NavigationContainer } from "@react-navigation/native";
+// import { createStackNavigator } from "@react-navigation/stack";
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+// import AryamRehab from "./Screens/Services/AryamRehab";
+// import Diagnostics from "./Screens/Services/Diagnostics";
+// import MedicalDevices from "./Screens/Services/MedicalDevices";
+// import Nursing from "./Screens/Services/Nursing";
+// import PhysioEquipment from "./Screens/Services/PhysioEquipment";
+// import Physiotherapy from "./Screens/Services/Physiotherapy";
+// import Telemedicine from "./Screens/Services/Telemedicine";
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+// export type RootStackParamList = {
+//   AryamRehab: undefined;
+//   Diagnostics: undefined;
+//   MedicalDevices: undefined;
+//   Nursing: undefined;
+//   PhysioEquipment: undefined;
+//   Physiotherapy: undefined;
+//   Telemedicine: undefined;
+// };
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+// const Stack = createStackNavigator<RootStackParamList>();
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+// const App: React.FC = () => {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator initialRouteName="AryamRehab">
+//         <Stack.Screen
+//           name="AryamRehab"
+//           component={AryamRehab}
+//           options={{ title: "Aryam Rehabilitation" }}
+//         />
+//         <Stack.Screen
+//           name="Diagnostics"
+//           component={Diagnostics}
+//           options={{ title: "Diagnostics" }}
+//         />
+//         <Stack.Screen
+//           name="MedicalDevices"
+//           component={MedicalDevices}
+//           options={{ title: "Medical Devices" }}
+//         />
+//         <Stack.Screen
+//           name="Nursing"
+//           component={Nursing}
+//           options={{ title: "Nursing" }}
+//         />
+//         <Stack.Screen
+//           name="PhysioEquipment"
+//           component={PhysioEquipment}
+//           options={{ title: "Physio Equipment" }}
+//         />
+//         <Stack.Screen
+//           name="Physiotherapy"
+//           component={Physiotherapy}
+//           options={{ title: "Physiotherapy" }}
+//         />
+//         <Stack.Screen
+//           name="Telemedicine"
+//           component={Telemedicine}
+//           options={{ title: "Telemedicine" }}
+//         />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// };
+
+// export default App;
+
+
+
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import Nursing from "./Screens/Services/Nursing";
+import PhysioEquipment from "./Screens/Services/PhysioEquipment";
+import Physiotherapy from "./Screens/Services/Physiotherapy";
+
+export type RootStackParamList = {
+  Nursing: undefined;
+  PhysioEquipment: undefined;
+  Physiotherapy: undefined;
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
+
+const App: React.FC = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Nursing">
+        <Stack.Screen name="Nursing" component={Nursing} />
+        <Stack.Screen name="PhysioEquipment" component={PhysioEquipment} />
+        <Stack.Screen name="Physiotherapy" component={Physiotherapy} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+};
 
 export default App;
