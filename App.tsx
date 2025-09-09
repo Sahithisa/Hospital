@@ -79,11 +79,14 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Nursing from "./Screens/Services/Nursing";
 import PhysioEquipment from "./Screens/Services/PhysioEquipment";
 import Physiotherapy from "./Screens/Services/Physiotherapy";
+import Telemedicine from "./Screens/Services/Telemedicine";
+
 
 export type RootStackParamList = {
   Nursing: undefined;
   PhysioEquipment: undefined;
   Physiotherapy: undefined;
+  Telemedicine: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -94,7 +97,8 @@ const App: React.FC = () => {
       <Stack.Navigator initialRouteName="Physiotherapy">
         <Stack.Screen name="Nursing" component={Nursing} />
         <Stack.Screen name="PhysioEquipment" component={PhysioEquipment} />
-        <Stack.Screen name="Physiotherapy" component={Physiotherapy} />
+        <Stack.Screen name="Physiotherapy" component={Physiotherapy} /> 
+        <Stack.Screen name="Telemedicine" component={Telemedicine}  />
       </Stack.Navigator>
     </NavigationContainer>
   );

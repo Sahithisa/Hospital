@@ -17,3 +17,11 @@ const styles = StyleSheet.create({
 });
 
 export default Diagnostics;
+
+
+
+//  git remote -v 
+//  git remote add origin https://github.com/Sahithisa/Hospital.git
+//  git remote -v
+//  git branch
+//  git push -u origin sandeep --force 

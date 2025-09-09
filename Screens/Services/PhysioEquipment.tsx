@@ -1,7 +1,7 @@
 //New code
 
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../App';
@@ -15,15 +15,13 @@ const cityList = [
 
 const advancedEquipments = ['Robotic Hands','Computerized Wheel Chair','WI HI Rehab Products','Bionic Leg'];
 const electroTherapy = ['IFT','TENS','Heating Pad','Muscle Stimulator','Ultra Sound','Laser'];
-const exerciseTherapy = ['Crepe Bandages','Cool Bandages','Cervical Pillows','CIMT Kits','Diabetic Footwear','Diabetic Socks','Dumbbells','Exercise Ball','Ergonomics','Knuckle Binder','Lumbar Pillows','Medical Tapes'];
-const orthotics = ['BB Splint','Cock up Splint','Cervcal Collars','Frog Splint','Foot Drop Splint','Facial Splint','Immobilizers','Knee Braces','Kypho Scolotic Braces','Providence Collars','Splints','Soft/Hard Collars','Thomos Splint'];
+const exerciseTherapy = ['Crepe Bandages','Cool Bandages','Cervical Pillows','CIMT Kits','Diabetic Footwear','Diabetic Socks','Dumbbells','Exercise Ball','Ergonomics','Knuckle Binder','Lumbar Pillows','Medical Tapes','Massage Chairs','Physio Balls','Pegboard','Parallel Bars','Re education Mats','Shoulder Pulleys','Suspension Therapy Kits','Shoulder Wheels','Traction Equipment','Thera Bands','Wheel Chair'];
+const orthotics = ['BB Splint','Cock up Splint','Cervcal Collars','Frog Splint','Foot Drop Splint','Facial Splint','Immobilizers','Knee Braces','Kypho Scolotic Braces','Providence Collars','Splints','Soft/Hard Collars','Thomos Splint','Taylor Brace'];
 const prosthetics = ['Above Knee','Below Knee','Lower Limb','Upper Limb','3D Printed Prosthetics'];
 const walkSupportiveDevices = ['Auxiliary Crutches','Monopod','Tripod','Quadripod','Walkers','Rollators'];
 
 const PhysioEquipment: React.FC = () => {
   const navigation = useNavigation<PhysioEquipmentProp>();
-
-  // Dropdown state
   const [expanded, setExpanded] = useState<string | null>(null);
 
   const toggleExpand = (section: string) => {
@@ -33,41 +31,42 @@ const PhysioEquipment: React.FC = () => {
   const renderCategory = (title: string, items: string[]) => (
     <View style={styles.listCategory}>
       <TouchableOpacity onPress={() => toggleExpand(title)}>
-        <Text style={styles.categoryTitle}>
-          {title} {expanded === title ? "▲" : "▼"}
-        </Text>
+        <View style={styles.categoryRow}>
+          <Text style={styles.categoryTitle}>{title}</Text>
+          <Text style={styles.arrow}>{expanded === title ? "▲" : "▼"}</Text>
+        </View>
       </TouchableOpacity>
+
       {expanded === title &&
         items.map(item => (
           <View key={item} style={styles.itemRow}>
-            <Text style={styles.tick}>✔</Text>
+            <Image source={require("../../Assets/Icons/Tick.png")} style={styles.tickIcon} />
             <Text style={styles.itemText}>{item}</Text>
           </View>
         ))}
+      <View style={styles.divider} />
     </View>
   );
 
   return (
     <ScrollView style={styles.container}>
-      {/* Title */}
       <Text style={styles.header}>Physio Equipment</Text>
       <Text style={styles.subtitle}>
         Aryam Health Care started it’s operations on World Physiotherapy Day, 8th Sep 2020
       </Text>
 
-      {/* City List */}
       <View style={styles.cityBox}>
         <Text style={styles.cityText}>
-          {cityList.join(' | ')}
+          Hyderabad | Secunderabad |{'\n'} Cyberabad | Bengaluru | Delhi |{'\n'}
+          Ananthapuramu | Tirupati | Nellore |{'\n'} Visakhapatnam |
+          Vijayawada | Kurnool
         </Text>
       </View>
 
-      {/* Red Button */}
       <TouchableOpacity style={styles.equipmentButton}>
         <Text style={styles.equipmentButtonText}>Physio Equipment</Text>
       </TouchableOpacity>
 
-      {/* Section */}
       <View style={styles.section}>
         <Text style={styles.sectionHeader}>Physio Equipment</Text>
         <Text style={styles.sectionText}>
@@ -76,7 +75,6 @@ const PhysioEquipment: React.FC = () => {
           to our patients’ needs.
         </Text>
 
-        {/* Dropdown Categories */}
         {renderCategory("Advanced Equipment", advancedEquipments)}
         {renderCategory("Electro Therapy (Portable and Digital)", electroTherapy)}
         {renderCategory("Exercise Therapy", exerciseTherapy)}
@@ -84,14 +82,6 @@ const PhysioEquipment: React.FC = () => {
         {renderCategory("Prosthetics", prosthetics)}
         {renderCategory("Walk Supportive Devices", walkSupportiveDevices)}
       </View>
-
-      {/* Nursing Button */}
-      {/* <TouchableOpacity
-        style={styles.nursingButton}
-        onPress={() => navigation.navigate('Nursing')}
-      >
-        <Text style={styles.nursingButtonText}>Go to Nursing</Text>
-      </TouchableOpacity> */}
     </ScrollView>
   );
 };
@@ -99,7 +89,6 @@ const PhysioEquipment: React.FC = () => {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
 
-  // Header
   header: { 
     fontSize: 28,
     fontWeight: 'bold',
@@ -116,7 +105,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
 
-  // Cities
   cityBox: {
     backgroundColor: '#FFC107',
     borderRadius: 10,
@@ -133,7 +121,6 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
 
-  // Red Button
   equipmentButton: {
     backgroundColor: '#B71C1C',
     alignSelf: 'flex-start',
@@ -141,7 +128,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingVertical: 10,
     borderRadius: 5,
-    marginBottom: 16,
+    marginBottom: 1,
+    marginTop:19,
   },
   equipmentButtonText: {
     color: '#fff',
@@ -149,11 +137,11 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
 
-  // Section
   section: {
     padding: 16,
     borderTopWidth: 1,
-    borderColor: '#ddd'
+    borderColor: '#ddd',
+   
   },
   sectionHeader: {
     fontWeight: 'bold',
@@ -168,10 +156,14 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
 
-  // Categories
   listCategory: {
     marginTop: 12,
     marginBottom: 6,
+  },
+  categoryRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   categoryTitle: {
     color: '#F57C00',
@@ -179,51 +171,38 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginVertical: 6,
   },
+  arrow: {
+    fontSize: 16,
+    color: '#ccc',
+  },
   itemRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 6,
-    marginLeft: 12,
+    marginLeft: 1,
   },
-  tick: {
-    fontSize: 16,
+  tickIcon: {
+    width: 16,
+    height: 16,
     marginRight: 8,
-    color: '#F57C00'
+    tintColor: '#F57C00',
+    resizeMode: 'contain',
   },
   itemText: {
     fontSize: 15,
-    color: '#222'
+    color: '#222',
+    marginBottom: 9,
   },
 
-  // Nursing Button
-  nursingButton: {
-    alignSelf: 'center',
-    backgroundColor: '#FFC107',
-    paddingVertical: 12,
-    paddingHorizontal: 28,
-    borderRadius: 25,
-    marginVertical: 24,
-  },
-  nursingButtonText: {
-    color: '#222',
-    fontWeight: 'bold',
-    fontSize: 16,
+  divider: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    marginVertical: 8,
   },
 });
 
 export default PhysioEquipment;
 
-
-//City box
-
-      // {/* City Box */}
-      // <View style={styles.cityBox}>
-      //   <Text style={styles.cityText}>
-      //     Hyderabad | Secunderabad | Cyberabad | Bengaluru | Delhi |{'\n'}
-      //     Ananthapuramu | Tirupati | Nellore | Visakhapatnam |{'\n'}
-      //     Vijayawada | Kurnool
-      //   </Text>
-      // </View>
 
 
 
