@@ -3,9 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // Screens
-import Diagnostics from "./screens/services/diagnostics";
-import AryamRehab from "./screens/services/aryamRehab";
-import MedicalDevices from "./screens/services/medicaldevices";
+import Diagnostics from "./screens/Services/Diagnostics";
+import AryamRehab from "./screens/Services/AryamRehab";
+import MedicalDevices from "./screens/Services/Medicaldevices";
 
 export type RootStackParamList = {
   diagnostics: undefined;
